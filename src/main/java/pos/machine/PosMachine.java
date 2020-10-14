@@ -73,7 +73,7 @@ public class PosMachine {
 
     private List<ItemInfo> mapBarcodeItems(List<String> barcodes) {
         return barcodes.stream()
-                .map(barcode -> findItemInfoByBarcode(barcode))
+                .map(this::findItemInfoByBarcode)
                 .collect(Collectors.toList());
     }
 
