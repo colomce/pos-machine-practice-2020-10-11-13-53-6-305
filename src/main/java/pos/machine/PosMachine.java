@@ -17,10 +17,9 @@ public class PosMachine {
 
     private String displayReceipt(Receipt receipt) {
         String subItemsDetails = concatSubItems(receipt.getItemsWithSubTotal());
-        String receiptDisplay = "***<store earning no money>Receipt***\n" + subItemsDetails + "----------------------\n"
+        return "***<store earning no money>Receipt***\n" + subItemsDetails + "----------------------\n"
                 + ("Total: " + receipt.getTotalPrice() + " (yuan)\n"
                 + "**********************");
-        return receiptDisplay;
     }
 
     private String concatSubItems(List<ScannedItem> itemsWithSubTotal) {
@@ -33,8 +32,7 @@ public class PosMachine {
     private Receipt computeReceipt(List<ItemInfo> scannedItemsWithInfo) {
         List<ScannedItem> itemsWithInfoSubtotal = buildItemWithSubtotal(scannedItemsWithInfo);
         int totalPrice = computeTotal(itemsWithInfoSubtotal);
-        Receipt receipt = new Receipt(itemsWithInfoSubtotal, totalPrice);
-        return receipt;
+        return new Receipt(itemsWithInfoSubtotal, totalPrice);
     }
 
     private int computeTotal(List<ScannedItem> scannedItems) {
@@ -43,8 +41,7 @@ public class PosMachine {
 
     private List<ScannedItem> buildItemWithSubtotal(List<ItemInfo> scannedItemsWithInfo) {
         List<ScannedItem> itemsWithInfo = mapOrderInfo(scannedItemsWithInfo);
-        List<ScannedItem> itemsWithInfoSubtotal = computeSubtotal(itemsWithInfo);
-        return itemsWithInfoSubtotal;
+        return computeSubtotal(itemsWithInfo);
     }
 
     private List<ScannedItem> mapOrderInfo(List<ItemInfo> scannedItemsWithInfo) {
