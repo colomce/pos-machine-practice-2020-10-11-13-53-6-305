@@ -17,7 +17,9 @@ public class PosMachine {
 
     private String displayReceipt(Receipt receipt) {
         String subItemsDetails = concatSubItems(receipt.getItemsWithSubTotal());
-        return "***<store earning no money>Receipt***\n" + subItemsDetails + "----------------------\n"
+        return "***<store earning no money>Receipt***\n"
+                + subItemsDetails
+                + "----------------------\n"
                 + ("Total: " + receipt.getTotalPrice() + " (yuan)\n"
                 + "**********************");
     }
